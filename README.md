@@ -16,7 +16,7 @@
 
 ## 如何使用
 
-将此Flake加入您的`flake.nix`或是`home-manager`:
+您可以在以下三种方式中，选择您喜欢的一种使用。
 
 ### 使用 nix run 体验
 
@@ -24,7 +24,18 @@
 nix run github:AstroNot233/Axolotl-Launcher-Flake
 ```
 
-### 使用 home-manager 持久化
+### 仅安装到用户 profile
+
+```
+nix profile add github:AstroNot233/Axolotl-Launcher-Flake
+```
+在安装到 profile 后，若您需要解除安装，请使用如下命令。
+```
+nix profile remove Axolotl-Launcher-Flake
+```
+> 若您通过此办法安装，您可以通过命令`axolotl`启动。
+
+### 使用 home-manager 持久化配置
 
 ```nix
 # flake.nix
@@ -53,6 +64,7 @@ programs.axolotl = {
   ];
 };
 ```
+> 若您使用此办法持久化配置，您可以通过自动创建的桌面文件启动，也可以通过`axolotl`在命令行中启动。
 
 ## 已知问题
 
