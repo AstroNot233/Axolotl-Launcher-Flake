@@ -21,37 +21,37 @@
 ### 使用 nix run 体验
 
 ```sh
-  nix run github:AstroNot233/Axolotl-Launcher-Flake
+nix run github:AstroNot233/Axolotl-Launcher-Flake
 ```
 
 ### 使用 home-manager 持久化
 
 ```nix
-  # flake.nix
-  inputs = {
-    # ...
-    axolotl = {
-      url = "github:AstroNot233/Axolotl-Launcher-Flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # ...
+# flake.nix
+inputs = {
+  # ...
+  axolotl = {
+    url = "github:AstroNot233/Axolotl-Launcher-Flake";
+    inputs.nixpkgs.follows = "nixpkgs";
   };
+  # ...
+};
 ```
 ```nix
-  # home.nix
-  imports = [
-    inputs.axolotl.homeModules.axolotl
+# home.nix
+imports = [
+  inputs.axolotl.homeModules.axolotl
+];
+programs.axolotl = {
+  enable = true;
+  jres = [
+    pkgs.jdk8
+    pkgs.jdk11
+    pkgs.jdk17
+    pkgs.jdk21
+    pkgs.jdk25
   ];
-  programs.axolotl = {
-    enable = true;
-    jres = [
-      pkgs.jdk8
-      pkgs.jdk11
-      pkgs.jdk17
-      pkgs.jdk21
-      pkgs.jdk25
-    ];
-  };
+};
 ```
 
 ## 已知问题
