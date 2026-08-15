@@ -2,6 +2,7 @@
 (
   let
     inherit (lib) mkEnableOption mkOption mkIf;
+    axolotl-bin = pkgs.callPackage ./package.nix {};
   in
     {
       options.programs.axolotl = {
@@ -29,7 +30,7 @@
           categories = [ "Game" ];
           exec = "axolotl";
           # startupWMClass = "Axolotl Launcher";
-          icon = "Axolotl Launcher";
+          icon = "${axolotl-bin}/share/icons/hicolor/128x128/apps/Axolotl Launcher.png";
           name = "Axolotl Launcher";
           terminal = false;
           type = "Application";
