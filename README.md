@@ -6,7 +6,7 @@
 
 ---
 
-**Axolotl Launcher（美西螈启动器）**是一款免费、开源、跨平台的 Minecraft Java 版第三方启动器，支持在一个客户端中搜索、安装和更新来自 Modrinth 与 CurseForge 的模组、整合包、资源包和光影，并提供实例管理、多种账户认证、个性化外观与 Axolotl 实验室工具。
+**Axolotl Launcher（美西螈启动器）** 是一款免费、开源、跨平台的 Minecraft Java 版第三方启动器，支持在一个客户端中搜索、安装和更新来自 Modrinth 与 CurseForge 的模组、整合包、资源包和光影，并提供实例管理、多种账户认证、个性化外观与 Axolotl 实验室工具。
 
 更多资讯详见Axolotl Launcher的[官方页面](https://axlmc.org)或者[GitHub主页](https://github.com/Mystic-Stars/Axolotl)。
 
