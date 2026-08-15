@@ -1,0 +1,52 @@
+{ self }: { config, lib, pkgs, ... }:
+(
+  let
+    inherit (lib) mkEnableOption mkOption mkIf;
+  in
+    {
+      options.programs.axolotl = {
+        enable = mkEnableOption "Axolotl Launcher";
+        package = mkOption {
+          type = with lib.types; package;
+          default = self.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          description = "A package of Axolotl Launcher.";
+          example = "mypkgs.axolotl";
+        };
+        jres = mkOption {
+          type = with lib.types; listOf package;
+          default = [];
+          description = ''
+            (WIP)
+            A list of packages of JREs/JDKs to be written into the Java list.
+          '';
+          example = [ pkgs.jre8 ];
+        };
+      };
+  
+      config = with config.programs; mkIf axolotl.enable {
+        home.packages = [ axolotl.package ];
+        xdg.desktopEntries.axolotl = {
+          categories = [ "Game" ];
+          exec = "axolotl";
+          # startupWMClass = "Axolotl Launcher";
+          icon = "Axolotl Launcher";
+          name = "Axolotl Launcher";
+          terminal = false;
+          type = "Application";
+          mimeType = [
+            "application/x-modrinth-modpack+zip"
+            "x-scheme-handler/axolotl"
+          ];
+        };
+        # xdg.configFile."axolotl/java.json" = mkIf (axolotl.jres != []) {
+        #   text = builtins.toJSON {
+        #     all = builtins.map (jre: rec {
+        #       path = "${jre}/bin/java";
+        #       version = lib.getVersion jre;
+        #       majorVersion = with lib; with versions; toInt ((if (toInt (major version) == 1) then minor else major) version);
+        #     }) axolotl.jres;
+        #   };
+        # };
+      };
+    }
+)
