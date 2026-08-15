@@ -42,7 +42,6 @@
       profile = ''
         export GIO_MODULE_DIR="${pkgs.glib-networking}/lib/gio/modules"
         export SSL_SERT_FILE="${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
-        export WEBKIT_DISABLE_DMABUF_RENDERER=1
       '';
       runScript = ''
         "${axolotl-bin}/bin/Axolotl Launcher"
