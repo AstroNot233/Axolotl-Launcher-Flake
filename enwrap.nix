@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, launchEnv ? {}, ... }:
 (
   let
     axolotl-bin = pkgs.callPackage ./package.nix {};
@@ -40,8 +40,11 @@
         ])
       ];
       profile = ''
-        export GIO_MODULE_DIR="${pkgs.glib-networking}/lib/gio/modules"
-        export SSL_SERT_FILE="${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+        set -o allexport
+        ${lib.toShellVars launchEnv}
+        GIO_MODULE_DIR="${pkgs.glib-networking}/lib/gio/modules"
+        SSL_SERT_FILE="${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+        set +o allexport
       '';
       runScript = ''
         "${axolotl-bin}/bin/Axolotl Launcher"

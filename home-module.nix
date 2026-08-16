@@ -9,9 +9,20 @@
         enable = mkEnableOption "Axolotl Launcher";
         package = mkOption {
           type = with lib.types; package;
-          default = self.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          default = self.packages.${pkgs.stdenv.hostPlatform.system}.default
+            .override { launchEnv = config.programs.axolotl.launchEnv; };
           description = "A package of Axolotl Launcher.";
           example = "mypkgs.axolotl";
+        };
+        launchEnv = mkOption {
+          type = with lib.types; attrsOf anything;
+          default = {};
+          description = ''
+            Environment variables or flags to be passed to Axolotl.
+          '';
+          example = {
+            WEBKIT_DISABLE_DMABUF_RENDERER = 1;
+          };
         };
         jres = mkOption {
           type = with lib.types; listOf package;
