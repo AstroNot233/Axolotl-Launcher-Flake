@@ -17,6 +17,7 @@
 ## 如何使用
 
 您可以在以下三种方式中，选择您喜欢的一种使用。
+建议您使用 home-manager 持久化配置，因为这使得您可以自定义 Axolotl 的启动选项，而非持久化配置无法客制化修改。
 
 ### 使用 nix run 体验
 
@@ -25,7 +26,7 @@ nix run github:AstroNot233/Axolotl-Launcher-Flake
 ```
 
 ### 仅安装到用户 profile
-
+> 若您通过此办法安装，您可以通过命令`axolotl`启动。
 ```
 nix profile add github:AstroNot233/Axolotl-Launcher-Flake
 ```
@@ -33,10 +34,9 @@ nix profile add github:AstroNot233/Axolotl-Launcher-Flake
 ```
 nix profile remove Axolotl-Launcher-Flake
 ```
-> 若您通过此办法安装，您可以通过命令`axolotl`启动。
 
 ### 使用 home-manager 持久化配置
-
+> 若您使用此办法持久化配置，您可以通过自动创建的桌面文件启动，也可以通过`axolotl`在命令行中启动。
 ```nix
 # flake.nix
 inputs = {
@@ -55,16 +55,20 @@ imports = [
 ];
 programs.axolotl = {
   enable = true;
+  launchEnv = {
+    WEBKIT_DISABLE_DMABUF_RENDERER = 1;
+    CUSTOMIZED_LAUNCH_ENV = "int / string";
+  };
   jres = [
     pkgs.jdk8
     pkgs.jdk11
     pkgs.jdk17
     pkgs.jdk21
     pkgs.jdk25
+    pkgs.any_other_jdk
   ];
 };
 ```
-> 若您使用此办法持久化配置，您可以通过自动创建的桌面文件启动，也可以通过`axolotl`在命令行中启动。
 
 ## 已知问题
 
