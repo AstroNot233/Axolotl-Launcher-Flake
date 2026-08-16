@@ -2,16 +2,15 @@
 (
   let
     inherit (lib) mkEnableOption mkOption mkIf;
-    axolotl-bin = pkgs.callPackage ./package.nix {
-      launchEnv = config.programs.axolotl.launchEnv;
-    };
+    axolotl-bin = pkgs.callPackage ./package.nix {};
   in
     {
       options.programs.axolotl = {
         enable = mkEnableOption "Axolotl Launcher";
         package = mkOption {
           type = with lib.types; package;
-          default = self.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          default = self.packages.${pkgs.stdenv.hostPlatform.system}.default
+            .override { launchEnv = config.programs.axolotl.launchEnv; };
           description = "A package of Axolotl Launcher.";
           example = "mypkgs.axolotl";
         };
