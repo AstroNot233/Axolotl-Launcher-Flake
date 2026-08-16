@@ -2,7 +2,9 @@
 (
   let
     inherit (lib) mkEnableOption mkOption mkIf;
-    axolotl-bin = pkgs.callPackage ./package.nix {};
+    axolotl-bin = pkgs.callPackage ./package.nix {
+      launchEnv = config.programs.axolotl.launchEnv;
+    };
   in
     {
       options.programs.axolotl = {
@@ -12,6 +14,16 @@
           default = self.packages.${pkgs.stdenv.hostPlatform.system}.default;
           description = "A package of Axolotl Launcher.";
           example = "mypkgs.axolotl";
+        };
+        launchEnv = mkOption {
+          type = with lib.types; attrsOf anything;
+          default = {};
+          description = ''
+            Environment variables or flags to be passed to Axolotl.
+          '';
+          example = {
+            WEBKIT_DISABLE_DMABUF_RENDERER = 1;
+          };
         };
         jres = mkOption {
           type = with lib.types; listOf package;
