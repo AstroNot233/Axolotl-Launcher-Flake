@@ -8,7 +8,7 @@
       targetPkgs = pkgs: builtins.concatLists [
         [ axolotl-bin ]
         (with pkgs; [
-          # For Axolotl
+        # For Axolotl
           libnotify
           gtk3
           webkitgtk_4_1
@@ -17,7 +17,7 @@
           glib
           dbus
           libsoup_3
-          # For Minecraf
+        # For Minecraft
           stdenv.cc.cc.lib
           ## native versions
           glfw3-minecraft
