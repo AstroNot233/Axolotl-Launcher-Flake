@@ -51,7 +51,7 @@ inputs = {
 ```nix
 # home.nix
 imports = [
-  inputs.axolotl.homeModules.axolotl
+  inputs.axolotl.homeModules
 ];
 programs.axolotl = {
   enable = true;

@@ -10,7 +10,7 @@
         package = mkOption {
           type = with lib.types; package;
           default = self.packages.${pkgs.stdenv.hostPlatform.system}.default
-            .override { launchEnv = config.programs.axolotl.launchEnv; };
+            .override { inherit (config.programs.axolotl) launchEnv; };
           description = "A package of Axolotl Launcher.";
           example = "mypkgs.axolotl";
         };
