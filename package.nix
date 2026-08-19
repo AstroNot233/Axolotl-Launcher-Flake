@@ -6,18 +6,18 @@
 }:
 stdenv.mkDerivation rec {
   pname = "axolotl";
-  version = "1.8.4";
+  version = "1.8.6";
   src = (
     let
       base = "https://github.com/Mystic-Stars/Axolotl/releases/download/v${version}";
       debs = {
         x86_64-linux = {
           url = "${base}/Axolotl.Launcher_${version}_amd64.deb";
-          hash = "sha256:15ec7bddbc15eabdad43e1bc3f259504829fd1f42e5950aaf368f5b3e35dcafe";
+          hash = "sha256:52ced19ff8253972b832b794e58090039dd0601b4466b51baaac5a65b73e4e7e";
         };
         aarch64-linux = {
           url = "${base}/Axolotl.Launcher_${version}_arm64.deb";
-          hash = "sha256:0fee7975d646aef6aa2c7bf69fe156762fdb3f8173ce8ff2c1821970c854975f";
+          hash = "sha256:984d110ac409cf81d749667d5670e6aafef2570cb93fbb0532474c2998301c54";
         };
       };
       sys = stdenv.hostPlatform.system;
