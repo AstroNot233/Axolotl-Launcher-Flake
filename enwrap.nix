@@ -17,6 +17,8 @@
           glib
           dbus
           libsoup_3
+          glib-networking
+          cacert
         # For Minecraft
           stdenv.cc.cc.lib
           ## native versions
@@ -45,8 +47,8 @@
       profile = ''
         set -o allexport
         ${lib.toShellVars launchEnv}
-        GIO_MODULE_DIR="${pkgs.glib-networking}/lib/gio/modules"
-        SSL_SERT_FILE="${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+        GIO_MODULE_DIR="/lib/gio/modules"
+        SSL_SERT_FILE="/etc/ssl/certs/ca-bundle.crt"
         set +o allexport
       '';
       runScript = ''
